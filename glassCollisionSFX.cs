@@ -40,6 +40,9 @@ public class glassCollisionSFX : MonoBehaviour
 
     private void FixedUpdate()
     {
-        knockCooldown -= Time.deltaTime;
+        if(knockCooldown >= 0)
+        {
+            knockCooldown -= Time.deltaTime;
+        }
     }
 }

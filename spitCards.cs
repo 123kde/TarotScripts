@@ -6,7 +6,7 @@ public class spitCards : MonoBehaviour
 {
     public AudioSource audio;
     public double loudSoundMagnitude = 2.5, minSoundMagnitude = 0.25, minImpact = 5;
-    public AudioClip knock1, knock2, knock3, tap1, tap2, tap3;
+    public AudioClip knock1, knock2, knock3, tap1, tap2, tap3, cardSFX;
     public float knockCooldown = 0.15f;
     public GameObject Temperance, Star, Magician, Strength, Fool, anchor;
     bool spat = false;
@@ -65,7 +65,7 @@ public class spitCards : MonoBehaviour
                     Rigidbody rb = current.GetComponent<Rigidbody>();
                     rb.velocity = (rba.position - rb.position / (Time.fixedDeltaTime * 30)); // * 30 slows it down, without it is warp speed lol
                 }
-                //put audio of cards shuffling out here
+                audio.PlayOneShot(cardSFX);
             }
         }
         knockCooldown = 0.15f;
@@ -73,7 +73,9 @@ public class spitCards : MonoBehaviour
 
     private void FixedUpdate()
     {
-        knockCooldown -= Time.deltaTime;
+        if (knockCooldown >= 0)
+        {
+            knockCooldown -= Time.deltaTime;
+        }
     }
 }
-
