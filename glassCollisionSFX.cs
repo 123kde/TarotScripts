@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class glassCollisionSFX : MonoBehaviour
 {
     public AudioSource audio;
     public double loudSoundMagnitude = 2.5, minSoundMagnitude = 0.25;
     public AudioClip knock1, knock2, knock3, knock4, knock5, tap1, tap2, tap3, tap4, tap5;
     public float knockCooldown = 0.15f;
+
     private void OnCollisionEnter(Collision collision)
     {
         int random = Random.Range(1, 6);
@@ -44,6 +46,7 @@ public class glassCollisionSFX : MonoBehaviour
 
         knockCooldown = 0.15f;
     }
+
     private void FixedUpdate()
     {
         knockCooldown -= Time.deltaTime;
