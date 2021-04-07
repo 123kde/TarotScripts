@@ -11,7 +11,7 @@ public class glassCollisionSFX : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if ((collision.relativeVelocity.magnitude >= minSoundMagnitude) && knockCooldown <= 0)
+        if (knockCooldown <= 0 &&(collision.relativeVelocity.magnitude >= minSoundMagnitude))
         {
             int random = Random.Range(1, 6);
 
