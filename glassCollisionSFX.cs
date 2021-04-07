@@ -11,16 +11,10 @@ public class glassCollisionSFX : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        int random = Random.Range(1, 6);
-
-        if (collision.relativeVelocity.magnitude < minSoundMagnitude)
+        if ((collision.relativeVelocity.magnitude >= minSoundMagnitude) && knockCooldown <= 0)
         {
-            knockCooldown = 0.15f;
-            return;
-        }
+            int random = Random.Range(1, 6);
 
-        if (knockCooldown <= 0)
-        {
             switch (random)
             {
                 case 1:
@@ -43,7 +37,6 @@ public class glassCollisionSFX : MonoBehaviour
                     break;
             }
         }
-
         knockCooldown = 0.15f;
     }
 
@@ -51,5 +44,4 @@ public class glassCollisionSFX : MonoBehaviour
     {
         knockCooldown -= Time.deltaTime;
     }
-
 }
