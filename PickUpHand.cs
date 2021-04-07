@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * NOTE: THIS SCRIPT IS CURRENTLY UNUSED.
+ * it's functionality was considered unneeded and redundant
+ * in the face of the steamvr interactable functionality.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
