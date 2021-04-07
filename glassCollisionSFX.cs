@@ -4,14 +4,14 @@ using UnityEngine;
 public class glassCollisionSFX : MonoBehaviour
 {
     public AudioSource audio;
-    public double loudSoundMagnitude = 2.5;
+    public double loudSoundMagnitude = 2.5, minSoundMagnitude = 0.25;
     public AudioClip knock1, knock2, knock3, knock4, knock5, tap1, tap2, tap3, tap4, tap5;
-    float knockCooldown = 0.15f;
+    public float knockCooldown = 0.15f;
     private void OnCollisionEnter(Collision collision)
     {
         int random = Random.Range(1, 6);
 
-        if (collision.relativeVelocity.magnitude < 0.5)
+        if (collision.relativeVelocity.magnitude < minSoundMagnitude)
         {
             knockCooldown = 0.15f;
             return;
