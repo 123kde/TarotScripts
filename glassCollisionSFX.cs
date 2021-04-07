@@ -13,9 +13,7 @@ public class glassCollisionSFX : MonoBehaviour
     {
         if (knockCooldown <= 0 &&(collision.relativeVelocity.magnitude >= minSoundMagnitude))
         {
-            int random = Random.Range(1, 6);
-
-            switch (random)
+            switch (Random.Range(1, 6))
             {
                 case 1:
                     audio.PlayOneShot(collision.relativeVelocity.magnitude >= loudSoundMagnitude ? knock1 : tap1);

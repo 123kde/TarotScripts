@@ -6,7 +6,7 @@ public class spitCards : MonoBehaviour
 {
     public AudioSource audio;
     public double loudSoundMagnitude = 2.5, minSoundMagnitude = 0.25, minImpact = 5;
-    public AudioClip knock1, knock2, knock3, knock4, knock5, tap1, tap2, tap3, tap4, tap5;
+    public AudioClip knock1, knock2, knock3, tap1, tap2, tap3;
     public float knockCooldown = 0.15f, cardCooldown = 0.075f;
     public GameObject Temperance, Star, Magician, Strength, Fool, anchor;
     bool spat = false;
@@ -15,9 +15,7 @@ public class spitCards : MonoBehaviour
     {
         if ((collision.relativeVelocity.magnitude >= minSoundMagnitude) && knockCooldown <= 0)
         {
-            int random = Random.Range(1, 6);
-
-            switch (random)
+            switch (Random.Range(1, 4))
             {
                 case 1:
                     audio.PlayOneShot(collision.relativeVelocity.magnitude >= loudSoundMagnitude ? knock1 : tap1);
@@ -28,25 +26,18 @@ public class spitCards : MonoBehaviour
                 case 3:
                     audio.PlayOneShot(collision.relativeVelocity.magnitude >= loudSoundMagnitude ? knock3 : tap3);
                     break;
-                case 4:
-                    audio.PlayOneShot(collision.relativeVelocity.magnitude >= loudSoundMagnitude ? knock4 : tap4);
-                    break;
-                case 5:
-                    audio.PlayOneShot(collision.relativeVelocity.magnitude >= loudSoundMagnitude ? knock5 : tap5);
-                    break;
                 default://should never reach here but whatever
-                    audio.PlayOneShot(collision.relativeVelocity.magnitude >= loudSoundMagnitude ? knock5 : tap5);
+                    audio.PlayOneShot(collision.relativeVelocity.magnitude >= loudSoundMagnitude ? knock3 : tap3);
                     break;
             }
 
             if(!spat && collision.relativeVelocity.magnitude >= minImpact)
             {
-                knockCooldown = 0.15f;
-                float cardCooldownOriginal = cardCooldown;
                 spat = true;
-                GameObject current = Fool;
+                GameObject current = null;
+                Rigidbody rba = anchor.GetComponent<Rigidbody>();
 
-                for(int i = 0; i < 5; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     switch (i)
                     {
@@ -72,13 +63,9 @@ public class spitCards : MonoBehaviour
 
                     current.SetActive(true);
                     Rigidbody rb = current.GetComponent<Rigidbody>();
-                    Rigidbody rba = anchor.GetComponent<Rigidbody>();
-                    rb.isKinematic = true;
-                    rb.velocity = (rba.position - rb.position /* - new Vector3(0f, 0.05f, 0.05f)) *// (Time.fixedDeltaTime * 10));
-
-                    rb.isKinematic = false;
-                    cardCooldown = cardCooldownOriginal;
+                    rb.velocity = (rba.position - rb.position / (Time.fixedDeltaTime * 30)); // * 30 slows it down, without it is warp speed lol
                 }
+                //put audio of cards shuffling out here
             }
         }
         knockCooldown = 0.15f;
@@ -87,11 +74,6 @@ public class spitCards : MonoBehaviour
     private void FixedUpdate()
     {
         knockCooldown -= Time.deltaTime;
-
-        if (spat && cardCooldown >= 0)
-        {
-            cardCooldown -= Time.deltaTime;
-        }
     }
 }
 
