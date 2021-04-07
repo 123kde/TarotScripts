@@ -11,15 +11,11 @@ public class radioBreak : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        print(collision.collider.gameObject.layer);
-        //print(collision.relativeVelocity.magnitude);
         if (!broken && collision.relativeVelocity.magnitude > 5 && collision.collider.gameObject.layer == 9)
         {
             audio.Stop();
             audio.PlayOneShot(breakSound);
             broken = true;
         }
-        
     }
 }
-
