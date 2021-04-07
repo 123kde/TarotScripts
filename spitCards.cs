@@ -7,7 +7,7 @@ public class spitCards : MonoBehaviour
     public AudioSource audio;
     public double loudSoundMagnitude = 2.5, minSoundMagnitude = 0.25, minImpact = 5;
     public AudioClip knock1, knock2, knock3, tap1, tap2, tap3;
-    public float knockCooldown = 0.15f, cardCooldown = 0.075f;
+    public float knockCooldown = 0.15f;
     public GameObject Temperance, Star, Magician, Strength, Fool, anchor;
     bool spat = false;
 
