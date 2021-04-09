@@ -28,6 +28,7 @@ public class switchScene : MonoBehaviour
         SteamVR_Fade.Start(Color.clear, 0f);
         SteamVR_Fade.Start(Color.white, _fadeDuration);
     }
+
     private void FadeFromWhite()
     {
         SteamVR_Fade.Start(Color.white, 0f);
