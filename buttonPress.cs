@@ -8,8 +8,7 @@ public class buttonPress : MonoBehaviour
     public Animator characterAnimator;
     public AudioSource button, shield;
     public AudioClip buttonClick, motors;
-    bool pushed = false;
-    bool down = false;
+    bool pushed = false, down = false;
 
     public void press()
     {
@@ -25,21 +24,10 @@ public class buttonPress : MonoBehaviour
             Invoke("playMotorSound", 4.5f);
         }
     }
-
-    /*
-    private void OnCollisionEnter(Collision collision)
+    public void setDownFalse()
     {
-        if (!pushed)
-        {
-            pushed = true;
-            characterAnimator.SetBool("buttonPushed", true);
-
-            button.PlayOneShot(buttonClick);
-
-            Invoke("playMotorSound", 20);
-        }
+        down = false;
     }
-    */
 
     private void playMotorSound()
     {
@@ -50,10 +38,5 @@ public class buttonPress : MonoBehaviour
     private void stopMotorSound()
     {
         shield.Stop();
-    }
-
-    public void setDownFalse()
-    {
-        down = false;
     }
 }
