@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using UnityEngine.SceneManagement;
 
 public class switchScene : MonoBehaviour
 {
-
     public AudioSource audio;
     public AudioClip transitionSound;
     public float _fadeDuration = 2.5f;
@@ -17,39 +17,20 @@ public class switchScene : MonoBehaviour
         Invoke("ActuallySwitchScene", 3);
     }
 
-
     void ActuallySwitchScene()
     {
-        FadeFromWhite();
-        //switchscene
+        SceneManager.LoadScene(2);
     }
 
     //following 2 functions taken from:https://answers.unity.com/questions/1258342/steam-vr-fade-camera.html, answer by dsentence
-
     private void FadeToWhite()
     {
-        //set start color
         SteamVR_Fade.Start(Color.clear, 0f);
-        //set and start fade to
         SteamVR_Fade.Start(Color.white, _fadeDuration);
     }
     private void FadeFromWhite()
     {
-        //set start color
         SteamVR_Fade.Start(Color.white, 0f);
-        //set and start fade to
         SteamVR_Fade.Start(Color.clear, _fadeDuration);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        FadeFromWhite();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
