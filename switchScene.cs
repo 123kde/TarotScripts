@@ -9,6 +9,7 @@ public class switchScene : MonoBehaviour
     public AudioSource audio;
     public AudioClip transitionSound;
     public float _fadeDuration = 2.5f;
+    public int scene;
 
     public void LetsGo()
     {
@@ -19,7 +20,7 @@ public class switchScene : MonoBehaviour
 
     void ActuallySwitchScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(scene);
     }
 
     //following 2 functions taken from:https://answers.unity.com/questions/1258342/steam-vr-fade-camera.html, answer by dsentence
