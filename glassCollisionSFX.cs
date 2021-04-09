@@ -8,10 +8,11 @@ public class glassCollisionSFX : MonoBehaviour
     public double loudSoundMagnitude = 2.5, minSoundMagnitude = 0.25;
     public AudioClip knock1, knock2, knock3, knock4, knock5, tap1, tap2, tap3, tap4, tap5;
     public float knockCooldown = 0.15f;
+    float originalKnockCooldown;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (knockCooldown <= 0 &&(collision.relativeVelocity.magnitude >= minSoundMagnitude))
+        if (knockCooldown <= 0 && collision.relativeVelocity.magnitude >= minSoundMagnitude)
         {
             switch (Random.Range(1, 6))
             {
@@ -35,10 +36,15 @@ public class glassCollisionSFX : MonoBehaviour
                     break;
             }
         }
-        knockCooldown = 0.15f;
+        knockCooldown = originalKnockCooldown;
     }
 
-    private void FixedUpdate()
+    void Start()
+    {
+        originalKnockCooldown = knockCooldown;
+    }
+
+    void FixedUpdate()
     {
         if(knockCooldown >= 0)
         {
