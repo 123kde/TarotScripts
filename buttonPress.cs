@@ -17,6 +17,7 @@ public class buttonPress : MonoBehaviour
             button.PlayOneShot(buttonClick);
             down = true;
         }
+
         if (!pushed)
         {
             pushed = true;
@@ -24,6 +25,7 @@ public class buttonPress : MonoBehaviour
             Invoke("playMotorSound", 4.5f);
         }
     }
+
     public void setDownFalse()
     {
         down = false;
